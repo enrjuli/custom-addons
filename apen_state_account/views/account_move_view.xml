@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_move_view_move_form" model="ir.ui.view">
+        <field name="name">account.move.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <!--AÑADIMOS EL BOTON ON_RISK-->
+            <xpath expr="//button[@name='action_post']" position='after'>
+                <button name="button_risk" string="On Risk" class="oe_highlight" type="object" attrs="{'invisible':['|', ('state','=','risk'),('state','=','posted')]}"/>
+            </xpath>
+
+            <!--EN LA BARRA APAREZCA EL ESTADO RISK-->
+            <xpath expr="//field[@name='state']" position='replace'>
+                 <field name="state" widget="statusbar" statusbar_visible="draft,posted,risk"/>
+            </xpath>
+
+            <!--CAMBIAMOS EL ATRBIBUTO DEL BOTON CONFIRMAR PARA QUE APAREZCA CUANDO EL STATE SEA RISK-->
+            <xpath expr="//button[@name='action_post'][2]" position='attributes'>
+                <attribute name="attrs">{'invisible': ['|', '|', ('state', 'not in', ('draft','risk')), ('auto_post', '=', True), ('move_type', '=', 'entry')]}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

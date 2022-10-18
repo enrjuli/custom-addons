@@ -1,0 +1,20 @@
+{
+    'name':'Reports Personalitzats',
+    'summary': "Adaptación de los informes de los documentos de Ventas, Compras, Albaranés y facturas",
+    'description': "Adaptación de los informes de los documentos de Ventas, Compras, Albaranés y facturas", 
+    'author': "Apen", 
+    'website': "http://www.apen.es/", 
+    'category': 'Reports', 
+    'version': '14.0.1.1.1', 
+    'depends': ['sale_stock','base', 'account', 'sale', 'purchase', 'stock', 
+                'stock_picking_report_valued'],
+    'data': [
+        "reports/apen_report_delivery.xml",
+        "reports/custom_report.xml", 
+        "reports/apen_sale_inherit.xml",
+        "reports/apen_account_inherit.xml",
+        "reports/apen_purchase_inherit.xml",
+        "views/stock_picking_view_inherit.xml",
+        "views/stock_quant_tree_inherit.xml",
+    ], 
+ }

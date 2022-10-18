@@ -1,0 +1,19 @@
+<odoo>
+        
+    <!-- Form view for "model" -->
+    <record id="mrp_production_form_inherit" model="ir.ui.view">
+        <field name="name">mrp.production.form.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[1]" position="after">
+                <group name="group_cantidades">
+                    <field name="cantidad_etiquetas" />
+                    <label for="cantidad_paquete" string="Cantidad por paquete" class="oe_inline" />
+                    <field name="cantidad_paquete" class="oe_inline" />
+                    <button type="object" name="update_package_qty" string="RECARGAR" class="oe_link oe_inline" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

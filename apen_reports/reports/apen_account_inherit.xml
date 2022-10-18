@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="account_report_inherit" inherit_id="account.report_invoice_document">
+
+        <!--CODIGO HS A LA TAULA PRINCIPAL-->
+        <xpath expr="//th[@name='th_description']" position="after">
+            <th name="th_codigo_hs">
+                <span>Código HS</span>
+            </th>
+        </xpath>
+        <xpath expr="//td[@name='account_invoice_line_name']" position="after">
+            <td>
+                <!-- Si el producte te codi HS que agafi el seu-->
+                <t t-if="line.product_id.hs_code_id">
+                  <span t-field="line.product_id.hs_code_id.local_code"/>
+                </t>
+                <!-- Si no te codi agafara el de categoria-->
+                <t t-else="">
+                  <span t-field="line.product_id.categ_id.hs_code_id.local_code"/>
+                </t>
+            </td>
+        </xpath>
+        
+        <!--DADES EXTRA DE PAGAMENT-->
+        <xpath expr="//div[@class='clearfix']" position="after">
+            <div class="row" name="payment_mode">
+                <div class="col-10">
+                    <span t-if="o.payment_mode_id">
+                        <strong>Modo de pago:</strong>
+                    </span>
+                    <span t-field="o.payment_mode_id"/>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@name='payment_mode']" position="after">
+            <div class="row" name="bank_elements">
+                <div class="col-11">
+                   <span t-if="o.mandate_id">
+                     <t t-if="o.mandate_id.partner_bank_id.bank_id">
+                        <strong>Banco: </strong>
+                        <span t-field="o.mandate_id.partner_bank_id.bank_id"/>
+                        <span t-field="o.mandate_id.partner_bank_id.bank_id.street"/>
+                        <span t-field="o.mandate_id.partner_bank_id.bank_id.city"/>
+                        <span>, </span>
+                        <span t-field="o.mandate_id.partner_bank_id.bank_id.state"/>
+                        <span>, </span>
+                        <span t-field="o.mandate_id.partner_bank_id.bank_id.zip"/>
+                        <span t-field="o.mandate_id.partner_bank_id.bank_id.country"/>
+                        
+                        <strong t-if="o.mandate_id.partner_bank_id.bank_id.bic"><br/>SWIFT: </strong>
+                        <span t-field="o.mandate_id.partner_bank_id.bank_id.bic"/>
+                      </t>
+                    </span>
+                    <span t-else="">
+                      <t t-if="o.partner_bank_id.bank_id">
+                        <strong>Banco: </strong>
+                        <span t-field="o.partner_bank_id.bank_name"/>
+                        <span t-field="o.partner_bank_id.bank_id.street"/>
+                        <span t-field="o.partner_bank_id.bank_id.city"/>
+                        <span>, </span>
+                        <span t-field="o.partner_bank_id.bank_id.state"/>
+                        <span>, </span>
+                        <span t-field="o.partner_bank_id.bank_id.zip"/>
+                        <span t-field="o.partner_bank_id.bank_id.country"/>
+                        <strong><span><br/>SWIFT: </span></strong>
+                        <span t-field="o.partner_bank_id.bank_id.bic"/>
+                      </t>
+                    </span>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@name='bank_elements']" position="after">
+          <div class="row" name="partner_account" t-if="o.mandate_id">
+            <div class="col-10">
+              <strong>Cuenta bancaria cliente: </strong>
+              <span t-field="o.mandate_id.partner_bank_id.acc_type" /> 
+              <span> </span>
+              <span t-field="o.mandate_id.partner_bank_id.acc_number"/>
+            </div>
+          </div>
+        </xpath>
+        
+        <!-- color de la lletra-->
+        <!--<xpath expr="/t/t/div/div[2]/div/div/table/t[3]/t/t[3]/tr/td[1]/strong" position="replace">
+            <strong>
+                <font class="text-white">Amount Due</font>
+            </strong>
+        </xpath>-->
+
+        <!--Si el discount es 0 que no apareixi-->
+        <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody[1]/t[3]/tr[1]/t[1]/td[5]" position="attributes">
+          <attribute name="t-if">display_discount</attribute>
+        </xpath>
+        <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead[1]/tr[1]/th[5]" position="attributes">
+            <attribute name="t-if">display_discount</attribute>
+        </xpath>
+
+
+        <!--Foto de la operacio segons el tipus de posicio fiscal-->
+        <xpath expr="//div[@class='page']" position="after">
+          <t t-if="o.fiscal_position_id.name == 'Régimen Nacional'">
+              <img t-attf-src="/apen_reports/static/src/img/Nacional.png" style="max-height:60px;float:right;"/>
+          </t>
+          <t t-else="">
+              <img t-attf-src="/apen_reports/static/src/img/Nonacional.png" style="max-height:60px;float:right;"/>
+          </t>
+        </xpath>
+
+         <!--Informacion que aparece en la description-->
+         <xpath expr="//td[@name='account_invoice_line_name']/span" position="after">
+          <t t-set="ref" t-value="line.get_client_reference()" />
+          
+          <t t-if="ref">
+            <br/>
+            <span><strong>Ref.Cliente:</strong> <span t-esc="ref"/></span>
+          </t>
+          <t t-if="line.product_id.default_code">
+              <br/>
+              <span><strong>Ref.Interna:</strong> <span t-field="line.product_id.default_code"/></span>
+          </t>
+          <t t-if="line.product_id.origin_country_id.name">
+            <br/>
+              <span><strong>País Origen:</strong> <span t-field="line.product_id.origin_country_id.name"/></span>
+          </t>
+      </xpath>
+
+    </template>
+</odoo>

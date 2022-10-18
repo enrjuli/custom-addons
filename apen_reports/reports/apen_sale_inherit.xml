@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+
+        <!--AQUESTA INFORMACIÓ VA DESPRES DE LA TAULA DEL SUBTOTAL I TOTAL -->
+        <xpath expr="//div[@name='so_total_summary']" position="after">
+            <div class="row" name="payment_mode">
+                <div class="col-10">
+                    <span t-if="doc.payment_mode_id">
+                        <strong>Modo de pago:</strong>
+                        <span t-field="doc.payment_mode_id"/>
+                    </span>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@name='payment_mode']" position="after">
+            <div class="row">
+                <div class="col-11">
+                    <span t-if="doc.payment_mode_id.fixed_journal_id.bank_id">
+                        <strong>Banco:</strong>
+                        <span t-field="doc.payment_mode_id.fixed_journal_id.bank_id.name"/>
+                        <span t-field="doc.payment_mode_id.fixed_journal_id.bank_id.street"/>
+                        <span t-field="doc.payment_mode_id.fixed_journal_id.bank_id.city"/>
+                        <span>, </span>
+                        <span t-field="doc.payment_mode_id.fixed_journal_id.bank_id.state"/>
+                        <span>, </span>
+                        <span t-field="doc.payment_mode_id.fixed_journal_id.bank_id.zip"/>
+                        <span t-field="doc.payment_mode_id.fixed_journal_id.bank_id.country"/>
+                        <strong><span><br/>SWIFT: </span></strong>
+                        <span t-field="doc.payment_mode_id.fixed_journal_id.bank_id.bic"/>
+                    </span>
+                     <span t-if="doc.payment_term_id">
+                        <strong>Plazos de pago:</strong>
+                        <span t-field="doc.payment_term_id"/>
+                    </span>
+                </div>
+            </div>
+        </xpath>
+
+        <!--REFERENCIA DE CONTACTE A LA CAPÇALERA-->
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div class="row mt32 mb32">
+                <div class="col-auto col-3 mw-100 mb-2" name="contact_ref">
+                    <span t-if="doc.partner_id.ref">
+                        <strong>Referencia Contacto:</strong>
+                        <br/>
+                    </span>
+                    <span t-field="doc.partner_id.ref"/>
+                </div>
+            </div>
+        </xpath>
+        
+        <!--INCOTERM A LA CAPÇALERA-->
+       <xpath expr="//div[@name='contact_ref']" position="before">
+            <div class="col-8" t-if="doc.incoterm">
+                <strong>Incoterm:<br/></strong>
+                <span t-field="doc.incoterm.code"/><span>, </span>
+                <span t-field="doc.incoterm.name"/>
+            </div>
+        </xpath>
+        
+        <!--Foto de la operacio segons el tipus de posicio fiscal
+        <xpath expr="//div[@class='page']" position="after">
+            <t t-if="doc.fiscal_position_id.name == 'Régimen Nacional'">
+                <img t-attf-src="/apen_reports/static/src/img/Nacional.png" style="max-height:60px;float:right;"/>
+            </t>
+            <t t-else="">
+                <img t-attf-src="/apen_reports/static/src/img/Nonacional.png" style="max-height:60px;float:right;"/>
+            </t>
+        </xpath>-->
+
+        <!--Informacion que aparece en la description-->
+        <xpath expr="//td[@name='td_name']/span" position="after">
+            <t t-if="line.product_customer_code">
+                <br/>
+                <span><strong>Ref.Cliente:</strong> <span t-field="line.product_customer_code"/></span>
+            </t>
+            <t t-if="line.product_id.default_code">
+                <br/>
+                <span><strong>Ref.Interna:</strong> <span t-field="line.product_id.default_code"/></span>
+            </t>
+            <t t-if="line.product_id.origin_country_id.name">
+                <br/>
+                <span><strong>País Origen:</strong> <span t-field="line.product_id.origin_country_id.name"/></span>
+            </t>
+        </xpath>
+
+
+        <!--Eliminem text del Subtotal IVA-->
+        <!--xpath expr="/t[1]/t[1]/div[1]/div[3]/div[1]/div[1]/table[1]/t[2]/tr[1]/t[1]/td[1]/span[2]" position="replace"/>-->
+
+        <!--MARGES SUPERIORS-->
+        <!--<xpath expr="/t/t/t[3]/t/div" position="attributes">
+            <attribute name="style" separator=";" add="margin-bottom:25px"/>
+        </xpath>
+        
+        <xpath expr="/t/t/t[3]/t/t/div" position="attributes">
+            <attribute name="style" separator=";" add="margin-bottom:35px"/>
+        </xpath>
+        
+        <xpath expr="/t/t/div/h2" position="attributes">
+            <attribute name="style" separator=";" add="margin-top:20px"/>
+        </xpath>-->
+
+    </template>
+</odoo>

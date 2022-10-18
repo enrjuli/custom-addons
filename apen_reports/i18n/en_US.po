@@ -1,0 +1,249 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* apen_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e-20220215\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-08 10:41+0000\n"
+"PO-Revision-Date: 2022-09-08 11:47+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: apen_reports
+#: model:ir.actions.report,print_report_name:apen_reports.action_delivery_report_customreport
+msgid ""
+"'Delivery Slip - %s - %s' % (object.partner_id.name or '', object.name)"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.purchase_report_inherit
+msgid ""
+"<span>\n"
+"                        <strong>Modo de pago:</strong>\n"
+"                    </span>"
+msgstr ""
+"<span>\n"
+"                        <strong>Payment mode:</strong>\n"
+"                    </span>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid ""
+"<span>All items couldn't be shipped, the following items will be shipped as "
+"soon as they become available.</span>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.account_report_inherit
+msgid "<span>Código HS</span>"
+msgstr "<span>HS Code</span>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.stock_report_delivery_no_package_section_line
+msgid "<span>Products with no package assigned</span>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong><span><br/>SWIFT: </span></strong>"
+msgstr "<strong><span><br/>SWIFT: </span></strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong>Banco:</strong>"
+msgstr "<strong>Bank:</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Carrier:</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Customer Reference:</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.purchase_report_inherit
+msgid "<strong>Importe</strong>"
+msgstr "<strong>Amount</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong>Incoterm:<br/></strong>"
+msgstr "<strong>Incoterm:<br/></strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.account_report_inherit
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong>Modo de pago:</strong>"
+msgstr "<strong>Payment mode:</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Notes:</strong>"
+msgstr "<strong>Notes:</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Order:</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Payment mode:</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Payment terms:</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.account_report_inherit
+#: model_terms:ir.ui.view,arch_db:apen_reports.custom_stock_report_delivery_aggregated_move_lines
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong>País Origen:</strong>"
+msgstr "<strong>Country of origin:</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong>Plazos de pago:</strong>"
+msgstr "<strong>Payment terms:</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Product</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Quantity</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.account_report_inherit
+#: model_terms:ir.ui.view,arch_db:apen_reports.custom_stock_report_delivery_aggregated_move_lines
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong>Ref.Cliente:</strong>"
+msgstr "<strong>Client Ref.:</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.account_report_inherit
+#: model_terms:ir.ui.view,arch_db:apen_reports.custom_stock_report_delivery_aggregated_move_lines
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid "<strong>Ref.Interna:</strong>"
+msgstr "<strong>Internal Ref.:</strong>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.sale_report_inherit
+msgid ""
+"<strong>Referencia Contacto:</strong>\n"
+"                        <br/>"
+msgstr ""
+"<strong>Contact Ref.:</strong>\n"
+"                        <br/>"
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.custom_stock_report_delivery_aggregated_move_lines
+msgid "<strong>SN: </strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Shipping Date:</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Signature</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Taxes</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Tracking Reference:</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "<strong>Untaxed Amount</strong>"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "Discount"
+msgstr ""
+
+#. module: apen_reports
+#: model:ir.model.fields,field_description:apen_reports.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:apen_reports.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:apen_reports.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: apen_reports
+#: model:ir.model.fields,field_description:apen_reports.field_account_move_line__id
+#: model:ir.model.fields,field_description:apen_reports.field_stock_move_line__id
+#: model:ir.model.fields,field_description:apen_reports.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: apen_reports
+#: model:ir.model,name:apen_reports.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: apen_reports
+#: model:ir.model.fields,field_description:apen_reports.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:apen_reports.field_stock_move_line____last_update
+#: model:ir.model.fields,field_description:apen_reports.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: apen_reports
+#: model:ir.model,name:apen_reports.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "Quantity"
+msgstr ""
+
+#. module: apen_reports
+#: model:ir.actions.report,name:apen_reports.action_delivery_report_customreport
+msgid "Serial Numbers Delivery"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "Subtotal"
+msgstr ""
+
+#. module: apen_reports
+#: model:ir.model,name:apen_reports.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: apen_reports
+#: model_terms:ir.ui.view,arch_db:apen_reports.report_apen_stock_document
+msgid "Unit Price"
+msgstr ""

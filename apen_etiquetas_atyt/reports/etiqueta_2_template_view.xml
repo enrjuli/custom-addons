@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <template id="apen_label2_transfer_template_view_zpl">
+      <t t-set="uom_categ_unit" t-value="env.ref('uom.product_uom_categ_unit')" />
+      <t t-foreach="docs" t-as="production">
+        <t t-if="production.state == 'Done'">
+            <t t-set="qty" t-value="int(production.product_qty)"/>
+        </t>
+            <t t-else="">
+              <t t-set="qty" t-value="1" />
+            </t>
+            <t t-foreach="range(qty)" t-as="item">
+              <t t-translation="off">
+                ^XA
+                ^MNY
+                ^FX PRIMERA LINEA TEXTO
+                ^CF0,30,30
+                ^FO80,60^FDDESCRIPCION PRODUCTO^FS
+                
+                ^FX SEGUNDA LINEA TEXTO
+                ^CF0,25,25
+                <t t-if="production.product_id.default_code">
+                  ^FO80,100^FD(<t t-esc="production.product_id.default_code" />)^FS
+                </t>
+                ^FO80,130
+                ^TBN, 700, 80
+                ^FD<t t-esc="production.product_id.name" />^FS
+                              
+                ^FX LINEA
+                ^FO35,200^GB750,3,2^FS
+                              
+                ^FX LINEA VERTICAL
+                ^FO375,200^GB3,135,3^FS
+                              
+                ^FX CUADRO TEXTO 1
+                ^CF0,30,30
+                ^FO80,230^FDUNIDADES CAJA^FS
+                ^CF0,30,30
+                <t t-if="production.product_id.packaging_ids.qty">
+                  ^FO80,280^FD<t t-esc="production.product_id.packaging_ids.qty" />^FS
+                </t>
+                ^FX CUADRO TEXTO 2
+                ^CF0,30,30
+                ^FO420,230^FDUNIDAD DE MEDIDA^FS
+                ^CF0,30,30
+                <t t-if="production.product_id.uom_id.name">
+                  ^FO420,280^FD<t t-esc="production.product_id.uom_id.name" />^FS
+                </t>
+                ^FX LINEA
+                ^FO35,335^GB750,3,2^FS
+                              
+                ^FX LINEA VERTICAL
+                ^FO375,335^GB3,110,3^FS
+                              
+                ^FX CUADRO TEXTO 3
+                ^CF0,30,30
+                ^FO80,360^FDCOLOR^FS
+                ^FX CUADRO TEXTO 4
+                ^CF0,30,30
+                ^FO420,360^FDMEDIDAS^FS
+                <t t-set="id" t-value="production.product_id.id" />
+
+                <t t-set="color" t-value="production.print_values('Support color', id)" />
+                ^CF0,30,30
+                ^FO80,410^FD<t t-esc="color" />^FS
+                <t t-set="lenght" t-value="production.print_values('Length', id)" />
+                <t t-set="width" t-value="production.print_values('Width', id)" />
+                ^CF0,30,30
+                <t t-if="lenght and width">
+                  ^FO420,400^FD<t t-esc="lenght" /> X <t t-esc="width" />^FS
+                </t>
+                ^FX LINEA
+                ^FO35,445^GB750,3,2^FS
+                ^FX CUADRO TEXTO 5 (CODIGO 1)
+                ^CF0,30,30
+                ^FO80,480^FDLOTE^FS
+                ^CF0,30,30
+                <t t-if="production.lot_producing_id">
+                  ^FO80,520^FD<t t-esc="production.lot_producing_id" />^FS
+                  ^FO400,470^BC,80,N^FD<t t-esc="production.lot_producing_id" />^FS
+                </t>
+                ^FX LINEA
+                ^FO35,580^GB750,3,2^FS
+                ^FX CUADRO TEXTO 6 (CODIGO 2)
+                ^FO280,600^FDCODIGO BARRAS^FS
+                <t t-if="production.product_id.barcode">
+                  ^BY2,2,100
+                  ^FO200,640^BC,90^FD<t t-esc="production.product_id.barcode" />^FS
+                </t>
+                ^FX CUADRO GENERAL
+                ^FO35,30^GB750,750,2,B,1
+                ^XZ
+              </t>
+            </t>
+          </t>
+    </template>
+  </data>
+</odoo>

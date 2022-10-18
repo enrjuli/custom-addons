@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <template id="apen_label1_transfer_template_view_zpl">
+            <t t-set="uom_categ_unit" t-value="env.ref('uom.product_uom_categ_unit')" />
+            <t t-foreach="docs" t-as="production">
+                        <t t-if="production.state == 'Done'">
+                            <t t-set="qty" t-value="int(production.product_qty)"/>
+                        </t>
+                        <t t-else="">
+                            <t t-set="qty" t-value="1"/>
+                        </t>
+                        <t t-foreach="range(qty)" t-as="item">
+                            <t t-translation="off">
+                                ^XA
+
+                                ^MNY
+                                ^CF0,30,30
+                                ^FO90,20^FDLOTE^FS
+                                <t t-if="production.lot_producing_id">
+                                    ^FO190,20^FD<t t-esc="production.lot_producing_id.name"/>^FS
+                                    ^FX Lote bar code.
+                                    ^BY2,2,60
+                                    ^FO390,20^BC,80,N^FD<t t-esc="production.lot_producing_id.name"/>^FS
+                                </t>
+                                <t t-if="production.product_id.barcode">
+                                    ^BY2,2,70
+                                    ^FO90,105^BC,80,N^FD<t t-esc="production.product_id.barcode"/>^FS
+                                    ^FO90,195^FD<t t-esc="production.product_id.barcode"/>^FS
+                                </t>
+                                ^CF0,25,25
+                                ^FO90,230^FD<t t-esc="production.product_id.display_name"/>^FS
+
+                                <t t-set="id" t-value="production.product_id.id"/>
+
+                                <t t-set="lenght" t-value="production.print_values('Length', id)" />
+                                <t t-set="width" t-value="production.print_values('Width', id)" />
+                                <t t-if="lenght and width">
+                                    ^CF0,30,25
+                                    ^FO550,140^FD<t t-esc="lenght"/> X <t t-esc="width"/>^FS
+                                </t>
+                                ^XZ
+                            </t>
+                        </t>
+            </t>
+        </template>
+    </data>
+</odoo>

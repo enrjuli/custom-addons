@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_partner_form_apen" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Text Informes" name="default_text">
+                    <group>
+                        <field name="text_ventas" />
+                        <field name="text_albarans" />
+                        <field name="text_factures" />
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

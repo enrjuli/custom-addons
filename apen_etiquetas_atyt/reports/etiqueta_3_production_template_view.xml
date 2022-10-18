@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="apen_label3_production_view">
+            <t t-set="uom_categ_unit" t-value="env.ref('uom.product_uom_categ_unit')" />
+            <t t-foreach="docs" t-as="production">
+                <t t-if="production.state == 'Done'">
+                    <t t-set="qty" t-value="int(production.product_qty)" />
+                </t>
+                <t t-else="">
+                    <t t-set="qty" t-value="1" />
+                </t>
+                <t t-foreach="range(qty)" t-as="item">
+                    <t t-translation="off">
+                        ^XA
+
+                                ^MNY
+                                ^FX PRIMERA LINEA TEXTO
+                                ^CF0,35,35
+                                ^FO150,70^FDCLIENTE: <t t-esc="production.x_studio_cliente.name"/>^FS
+
+                                ^FX LINEA
+                                ^FO70,140^GB700,15,15^FS
+
+                                ^FX TEXTO 1
+                                ^CF0,35,35
+                                ^FO120,210^FDREFERENCIA:^FS
+                                ^CF0,30,30
+                                ^FO330,210^FD<t t-esc="production.product_id.default_code" />^FS
+
+                                ^FX TEXTO 2
+                                ^CF0,35,35
+                                ^FO120,280^FDCOLOR: ^FS
+                                ^CF0,35,35
+                                <t t-set="id" t-value="production.product_id.id" />
+                                <t t-set="color" t-value="production.print_values('Support color', id)" />
+                                ^FO350,280^FD<t t-esc="color" />^FS
+                                
+                                ^FX TEXTO 3
+                                ^CF0,35,35
+                                ^FO120,350^FDMEDIDA:^FS
+                                ^CF0,35,35
+                                <t t-set="length" t-value="production.print_values('Length', id)" />
+                                <t t-set="width" t-value="production.print_values('Width', id)" />
+                                <t t-if="length and width">
+                                    ^FO350,350^FD<t t-esc="length" /> X <t t-esc="width" />^FS
+                                </t>
+                                ^FX TEXTO 4
+                                ^CF0,35,35
+                                ^FO120,430^FDN ROLLOS:^FS
+                                <!--Unidades-->
+                                ^CF0,35,35
+                                <t t-if="production.product_id.packaging_ids.qty">
+                                    ^FO350,430^FD<t t-esc="production.product_id.packaging_ids.qty" />^FS
+                                </t>
+                                ^FX TEXTO 5
+                                ^CF0,35,35
+                                ^FO120,510^FDFECHA:^FS
+                                ^CF0,35,35
+                                ^FO350,510^FD<t t-esc="production.date_finished" widget="date"/>^FS
+
+                                ^FX LINEA
+                                ^FO70,600^GB700,15,15^FS
+
+                                ^FX TEXTO 6
+                                ^CF0,30,30
+                                ^FO120,650^FDN DE PRODUCCION:^FS
+                                ^CF0,30,30
+                                ^FO400,650^FD<t t-esc="production.name" />^FS
+                                ^XZ
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
