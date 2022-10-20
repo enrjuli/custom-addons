@@ -12,6 +12,8 @@
         "reports/etiqueta_2_template_view.xml",
         "reports/etiqueta_1_template_view.xml", 
         "reports/etiqueta_3_production_template_view.xml",  
+        "reports/etiqueta_trasferencias_view.xml",
         'views/mrp_production_form_inherit.xml',
     ], 
+    "license": "AGPL-3",
  }

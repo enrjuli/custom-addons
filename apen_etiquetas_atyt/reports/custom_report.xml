@@ -31,6 +31,16 @@
             <field name="binding_model_id" ref="mrp.model_mrp_production"/>
             <field name="binding_type">report</field>
         </record>
+
+        <record id="apen_label_transferencia_template" model="ir.actions.report">
+            <field name="name">TRANSFERENCIA (ZPL)</field>
+            <field name="model">stock.picking</field>
+            <field name="report_type">qweb-text</field>
+            <field name="report_name">apen_etiquetas_atyt.apen_etiqueta_transferencia_view</field>
+            <field name="report_file">apen_etiquetas_atyt.apen_etiqueta_transferencia_view</field>
+            <field name="binding_model_id" ref="stock.model_stock_picking"/>
+            <field name="binding_type">report</field>
+        </record>
       
     </data> 
 </odoo>

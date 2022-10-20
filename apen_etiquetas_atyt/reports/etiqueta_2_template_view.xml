@@ -78,7 +78,7 @@
                 ^CF0,30,30
                 <t t-if="production.lot_producing_id">
                   ^FO80,520^FD<t t-esc="production.lot_producing_id" />^FS
-                  ^FO400,470^BC,80,N^FD<t t-esc="production.lot_producing_id" />^FS
+                  ^FO400,470^BC,80,N^FD<t t-esc="production.lot_producing_id.name" />^FS
                 </t>
                 ^FX LINEA
                 ^FO35,580^GB750,3,2^FS
