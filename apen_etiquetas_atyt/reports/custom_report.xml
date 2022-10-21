@@ -3,7 +3,7 @@
     <data>
        
         <record id="apen_action_label_transfer_template_zpl" model="ir.actions.report">
-            <field name="name">Barcodes 2 (ZPL)</field>
+            <field name="name">ETIQUETA ROLLO</field>
             <field name="model">mrp.production</field>
             <field name="report_type">qweb-text</field>
             <field name="report_name">apen_etiquetas_atyt.apen_label2_transfer_template_view_zpl</field>
@@ -13,7 +13,7 @@
         </record>      
 
         <record id="apen_action_label2_transfer_template_zpl" model="ir.actions.report">
-            <field name="name">Barcodes 1 (ZPL)</field>
+            <field name="name">ETIQUETA BOBINA</field>
             <field name="model">mrp.production</field>
             <field name="report_type">qweb-text</field>
             <field name="report_name">apen_etiquetas_atyt.apen_label1_transfer_template_view_zpl</field>
@@ -23,7 +23,7 @@
         </record>  
 
         <record id="apen_label_manufacture_template" model="ir.actions.report">
-            <field name="name">Finished Product Label 2 (ZPL)</field>
+            <field name="name">ETIQUETA PRODUCCIÓN</field>
             <field name="model">mrp.production</field>
             <field name="report_type">qweb-text</field>
             <field name="report_name">apen_etiquetas_atyt.apen_label3_production_view</field>
