@@ -16,8 +16,11 @@ class MrpProduction(models.Model):
                 order.cantidad_paquete = 0
     
     def update_package_qty(self):
-        if self.product_id.packaging_ids.qty:
-            self.cantidad_paquete = self.product_id.packaging_ids.qty
+        if self.product_id.packaging_ids:
+            for packages in self.product_id.packaging_ids:
+                if packages.qty != 1:
+                    self.cantidad_paquete = packages.qty
+                    return 
         else:
             self.cantidad_paquete = 0
     
