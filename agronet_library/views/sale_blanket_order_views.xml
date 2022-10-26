@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <record id="agronet_sale_blanket_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.blanket.order.form.agronet</field>
+            <field name="model">sale.blanket.order</field>
+            <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='validity_date']" position="after"> 
+                <field name="pendent_consumir" />
+              </xpath>
+              <xpath expr="//field[@name='date_schedule']" position="after"> 
+                <field name="date_create" readonly="1"/>
+              </xpath>
+              <xpath expr="//field[@name='delivered_uom_qty']" position="after"> 
+                <field name="qty_disponible" />
+              </xpath>
+            </field>
+        </record>
+
+        <!-- Form view for "model" line -->
+        <record id="agronet_sale_blanket_order_line_form_inherit" model="ir.ui.view">
+          <field name="name">sale.blanket.order.line.form.agronet</field>
+          <field name="model">sale.blanket.order.line</field>
+          <field name="inherit_id" ref="sale_blanket_order.sale_blanket_order_line_form" />
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_schedule']" position="after"> 
+              <field name="date_create" />
+            </xpath>
+            <xpath expr="//label[@for='remaining_qty']" position="before"> 
+              <label for="qty_disponible"/>
+              <div>
+                <field name="qty_disponible" class="oe_inline" readonly="1"/>
+              </div>
+            </xpath>
+          </field>
+      </record>
+
+      <!-- Tree view for "model" -->
+      <record id="agronet_sale_blanket_order_line_tree_inherit" model="ir.ui.view">
+          <field name="name">sale.blanket.order.line.tree.inherit</field>
+          <field name="model">sale.blanket.order.line</field>
+          <field name="inherit_id" ref="sale_blanket_order.sale_blanket_order_line_tree" />
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='delivered_uom_qty']" position="after"> 
+              <field name="qty_disponible" />
+            </xpath>
+          </field>
+      </record>   
+    </data>
+</odoo>

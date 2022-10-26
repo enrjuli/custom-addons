@@ -1,5 +1,4 @@
 <odoo>
-        
     <!-- Form view for "model" -->
     <record id="mrp_production_form_inherit" model="ir.ui.view">
         <field name="name">mrp.production.form.inherit</field>

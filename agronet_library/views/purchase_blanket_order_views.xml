@@ -1,0 +1,45 @@
+<odoo>
+  <data>
+    <!--
+    <record id="view_model_tree" model="ir.ui.view">
+        <field name="name">view.model.tree</field>
+        <field name="model">model</field>
+        <field name="inherit_id" ref="base.view_model_tree" />
+        <field name="arch" type="xml">
+            
+        </field>
+    </record>-->
+
+    <!-- Form view for "model" -->
+    <record id="agronet_purchase_blanket_line_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.form.agronet</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="inherit_id" ref="purchase_blanket_order.purchase_blanket_order_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_schedule']" position="after"> 
+              <field name="date_create" readonly="1"/>
+            </xpath>
+            <xpath expr="//label[@for='remaining_qty']" position="before"> 
+              <label for="qty_disponible"/>
+              <div>
+                <field name="qty_disponible" class="oe_inline" readonly="1"/>
+              </div>
+          </xpath>
+        </field>
+    </record>
+    
+    <record id="agronet_purchase_blanket_order_form_inherit" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.form.agronet</field>
+        <field name="model">purchase.blanket.order</field>
+        <field name="inherit_id" ref="purchase_blanket_order.view_purchase_blanket_order_form" />
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='date_schedule']" position="after"> 
+            <field name="date_create" />
+          </xpath>
+          <xpath expr="//field[@name='received_uom_qty']" position="after"> 
+            <field name="qty_disponible" />
+          </xpath>
+        </field>
+    </record>  
+  </data>
+</odoo>
