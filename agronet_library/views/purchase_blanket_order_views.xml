@@ -1,14 +1,16 @@
 <odoo>
   <data>
-    <!--
-    <record id="view_model_tree" model="ir.ui.view">
-        <field name="name">view.model.tree</field>
-        <field name="model">model</field>
-        <field name="inherit_id" ref="base.view_model_tree" />
+    
+    <record id="agronet_purchase_blanket_line_treeinherit" model="ir.ui.view">
+        <field name="name">purchase.blanket.order.line.tree.agronet</field>
+        <field name="model">purchase.blanket.order.line</field>
+        <field name="inherit_id" ref="purchase_blanket_order.purchase_blanket_order_line_tree"/>
         <field name="arch" type="xml">
-            
+          <xpath expr="//field[@name='received_uom_qty']" position="after"> 
+            <field name="qty_disponible" />
+          </xpath>
         </field>
-    </record>-->
+    </record>
 
     <!-- Form view for "model" -->
     <record id="agronet_purchase_blanket_line_form_inherit" model="ir.ui.view">
