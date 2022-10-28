@@ -7,7 +7,7 @@
                     <t t-set="qty" t-value="1"/>
                     <t t-foreach="range(qty)" t-as="item"><!--QUANTIAT POSADA A MÀ-->
                         <t t-translation="off">
-                                ^XA
+                                ^XA^CI28
                                 ^MNY
                                 ^FX PRIMERA LINEA TEXTO
                                 ^CF0,30,30
@@ -33,9 +33,17 @@
                                 ^FO80,230^FDUNIDADES CAJA^FS
                                 ^CF0,30,30
                                 <!--CANTIDAD POR PAQUETE SE COJE DEL PRODUCTO-->
-                                <t t-if="lot.product_id.packaging_ids">
-                                    ^FO80,280^FD<t t-esc="lot.product_id.packaging_ids.qty" />^FS
+                                <!--SI TIENE MAS DE UN PAQUETE HAY QUE COMPROVAR QUE EL CHECKBOX ESTE ACTIVO, ENTONCES RECOGEMOS EL VALOR DE ESE PAQUETE-->
+                                <t t-set="quantity" t-value = "" />
+                                <t t-if="move_line.product_id.packaging_ids">
+                                    <t t-foreach="move_line.product_id.packaging_ids" t-as="package">
+                                        <t t-if="package.product_active">
+                                            <t t-set="quantity" t-value="package.qty" />
+                                        </t>
+                                    </t>
                                 </t>
+                                ^FO80,280^FD<t t-esc="quantity"/>^FS
+
                                 <!--CANTIDAD POR PAQUETE SE COJE DEL CAMPO CREADO-->
                                 <!--<t t-if="move_line.cantidad_paquete != 0">
                                 ^FO80,280^FD<t t-esc="move_line.cantidad_paquete" />^FS

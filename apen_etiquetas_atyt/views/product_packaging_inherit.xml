@@ -1,0 +1,39 @@
+<odoo>
+    
+    <!-- VIEWS: "Human readable name"
+    
+        - Model·········: model
+        - Base Addons···: base    
+    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    
+    <!-- Tree view for "model" -->
+    <record id="apen_product_packaging_tree_inherit" model="ir.ui.view">
+        <field name="name">product.packaging.tree.apen</field>
+        <field name="model">product.packaging</field>
+        <field name="inherit_id" ref="product.product_packaging_tree_view" />
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="product_active" />
+            </xpath>
+            
+        </field>
+    </record>
+    
+    <!-- Form view for "model" -->
+    <record id="apen_product_packaging_form_inherit" model="ir.ui.view">
+        <field name="name">product.packaging.form.apen</field>
+        <field name="model">product.packaging</field>
+         <field name="inherit_id" ref="product.product_packaging_form_view" />
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="product_active" />
+            </xpath>
+            
+        </field>
+    </record>
+    
+    
+
+</odoo>

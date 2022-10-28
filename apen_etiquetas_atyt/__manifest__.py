@@ -16,5 +16,6 @@
         "reports/etiqueta_trasferencias_view.xml",
         "reports/etiqueta_lote_template.xml",
         'views/mrp_production_form_inherit.xml',
+        'views/product_packaging_inherit.xml'
     ], 
  }
