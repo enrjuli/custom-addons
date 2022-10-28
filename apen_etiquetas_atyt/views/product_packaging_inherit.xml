@@ -90,37 +90,5 @@
             
         </field>
     </record>
-    <!-- Form Packaing view in "product.template" -->
-    <record id="apen_product_template_form_inherit" model="ir.ui.view">
-        <field name="name">product.template.form.apen</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view" />
-        <field name="arch" type="xml">
-            
-            <xpath expr="//field[@name='packaging_ids']" position="inside">
-                <form string="Product Packaging">
-                    <sheet>
-                        <label for="name" string="Packaging"/>
-                        <h1>
-                            <field name="name"/>
-                        </h1>
-                        <group>
-                            <group name="qty">
-                                <label for="qty" string="Contained quantity"/>
-                                <div class="o_row">
-                                    <field name="qty"/>
-                                    <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/>
-                                </div>
-                                <field name="barcode"/>
-                                <field name="company_id" groups="base.group_multi_company"/>
-                                <field name="product_active" />
-                            </group>
-                        </group>
-                    </sheet>
-                </form>
-            </xpath>
-            
-        </field>
-    </record>
     
 </odoo>
