@@ -4,8 +4,8 @@
     <template id="apen_label2_transfer_template_view_zpl">
       <t t-set="uom_categ_unit" t-value="env.ref('uom.product_uom_categ_unit')" />
       <t t-foreach="docs" t-as="production">
-        <t t-if="production.state == 'Done'">
-            <t t-set="qty" t-value="int(production.product_qty)"/>
+        <t t-if="production.cantidad_etiquetas != 0">
+            <t t-set="qty" t-value="int(production.cantidad_etiquetas)"/>
         </t>
             <t t-else="">
               <t t-set="qty" t-value="1" />
@@ -37,8 +37,12 @@
                 ^CF0,30,30
                 ^FO80,230^FDUNIDADES CAJA^FS
                 ^CF0,30,30
-                <t t-if="production.product_id.packaging_ids.qty">
+                <!--<t t-if="production.product_id.packaging_ids.qty">
                   ^FO80,280^FD<t t-esc="production.product_id.packaging_ids.qty" />^FS
+                </t>-->
+                <!--AHORA LA CANTIDAD POR PAQUETE SE COJE DEL CAMPO CREADO-->
+                <t t-if="production.cantidad_paquete != 0">
+                  ^FO80,280^FD<t t-esc="production.cantidad_paquete" />^FS
                 </t>
                 ^FX CUADRO TEXTO 2
                 ^CF0,30,30
@@ -77,7 +81,7 @@
                 ^FO80,480^FDLOTE^FS
                 ^CF0,30,30
                 <t t-if="production.lot_producing_id">
-                  ^FO80,520^FD<t t-esc="production.lot_producing_id" />^FS
+                  ^FO80,520^FD<t t-esc="production.lot_producing_id.name" />^FS
                   ^FO400,470^BC,80,N^FD<t t-esc="production.lot_producing_id.name" />^FS
                 </t>
                 ^FX LINEA
