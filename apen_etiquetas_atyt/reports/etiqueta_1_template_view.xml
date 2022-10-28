@@ -28,7 +28,7 @@
                                     ^FO90,195^FD<t t-esc="production.product_id.barcode"/>^FS
                                 </t>
                                 ^CF0,25,25
-                                ^FO90,230^FD<t t-esc="production.product_id.display_name"/>^FS
+                                ^FO90,230^FD<t t-esc="production.product_id.name"/>^FS
 
                                 <t t-set="id" t-value="production.product_id.id"/>
 
