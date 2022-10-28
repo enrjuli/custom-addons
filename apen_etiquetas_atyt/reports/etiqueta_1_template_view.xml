@@ -3,8 +3,8 @@
         <template id="apen_label1_transfer_template_view_zpl">
             <t t-set="uom_categ_unit" t-value="env.ref('uom.product_uom_categ_unit')" />
             <t t-foreach="docs" t-as="production">
-                        <t t-if="production.state == 'Done'">
-                            <t t-set="qty" t-value="int(production.product_qty)"/>
+                        <t t-if="production.cantidad_etiquetas != 0">
+                            <t t-set="qty" t-value="int(production.cantidad_etiquetas)"/>
                         </t>
                         <t t-else="">
                             <t t-set="qty" t-value="1"/>

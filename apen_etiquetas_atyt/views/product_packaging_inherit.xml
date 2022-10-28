@@ -1,12 +1,6 @@
 <odoo>
-    
-    <!-- VIEWS: "Human readable name"
-    
-        - Model·········: model
-        - Base Addons···: base    
-    - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-    
-    <!-- Tree view for "model" -->
+        
+    <!-- Tree view for "product.packaging" -->
     <record id="apen_product_packaging_tree_inherit" model="ir.ui.view">
         <field name="name">product.packaging.tree.apen</field>
         <field name="model">product.packaging</field>
@@ -19,8 +13,7 @@
             
         </field>
     </record>
-    
-    <!-- Form view for "model" -->
+    <!-- Form view for "product.packagingprod" -->
     <record id="apen_product_packaging_form_inherit" model="ir.ui.view">
         <field name="name">product.packaging.form.apen</field>
         <field name="model">product.packaging</field>
@@ -33,7 +26,101 @@
             
         </field>
     </record>
+    <!-- Form view for "product.product" -->
+    <record id="apen_product_product_form_inherit" model="ir.ui.view">
+        <field name="name">product.product.form.apen</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='packaging_ids']" position="inside">
+                <form string="Product Packaging">
+                    <sheet>
+                        <label for="name" string="Packaging"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group name="qty">
+                                <label for="qty" string="Contained quantity"/>
+                                <div class="o_row">
+                                    <field name="qty"/>
+                                    <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/>
+                                </div>
+                                <field name="barcode"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="product_active" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+            
+        </field>
+    </record>
+    <!-- Form Easy view for "product.product" -->
+    <record id="apen_product_product_form_easy_inherit" model="ir.ui.view">
+        <field name="name">product.product.form.easy.apen</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view" />
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='packaging_ids']" position="inside">
+                <form string="Product Packaging">
+                    <sheet>
+                        <label for="name" string="Packaging"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group name="qty">
+                                <label for="qty" string="Contained quantity"/>
+                                <div class="o_row">
+                                    <field name="qty"/>
+                                    <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/>
+                                </div>
+                                <field name="barcode"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="product_active" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+            
+        </field>
+    </record>
+    <!-- Form Packaing view in "product.template" -->
+    <record id="apen_product_template_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.apen</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='packaging_ids']" position="inside">
+                <form string="Product Packaging">
+                    <sheet>
+                        <label for="name" string="Packaging"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group name="qty">
+                                <label for="qty" string="Contained quantity"/>
+                                <div class="o_row">
+                                    <field name="qty"/>
+                                    <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" groups="uom.group_uom"/>
+                                </div>
+                                <field name="barcode"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="product_active" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+            
+        </field>
+    </record>
     
-    
-
 </odoo>
