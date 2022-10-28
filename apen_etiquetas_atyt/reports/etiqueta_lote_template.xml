@@ -1,27 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <template id="apen_etiqueta_transferencia_view">
+        <template id="apen_etiqueta_lot_template_view">
             <t t-set="uom_categ_unit" t-value="env.ref('uom.product_uom_categ_unit')"/>
-            <t t-foreach="docs" t-as="picking">
-                <!-->t t-set="picking_qty_done" t-value="any(picking.move_lines.move_line_ids.mapped('qty_done'))"/>-->
-                <t t-foreach="picking.move_lines" t-as="move">
-                    <!--Per cada linea de producte imprimir etiqueta-->
-                    <t t-foreach="move.move_line_ids" t-as="move_line">
-                        <!--<t t-if="move_line.product_uom_id.category_id == uom_categ_unit">
-                            <t t-if="picking_qty_done">
-                                <t t-set="qty" t-value="int(move_line.qty_done)"/>
-                            </t>
-                            <t t-else="">
-                                <t t-set="qty" t-value="int(move_line.product_uom_qty)"/>
-                            </t>
-                        </t>
-                        <t t-else="">
-                            <t t-set="qty" t-value="1"/>
-                        </t>-->
-                        <t t-set="qty" t-value="2"/>
-                        <t t-foreach="range(qty)" t-as="item"><!--QUANTIAT POSADA A MÀ-->
-                           <t t-translation="off">
+            <t t-foreach="docs" t-as="lot">
+                    <t t-set="qty" t-value="1"/>
+                    <t t-foreach="range(qty)" t-as="item"><!--QUANTIAT POSADA A MÀ-->
+                        <t t-translation="off">
                                 ^XA
                                 ^MNY
                                 ^FX PRIMERA LINEA TEXTO
@@ -30,12 +15,12 @@
                                 
                                 ^FX SEGUNDA LINEA TEXTO
                                 ^CF0,25,25
-                                <t t-if="move_line.product_id.default_code">
-                                    ^FO80,100^FD(<t t-esc="move_line.product_id.default_code" />)^FS
+                                <t t-if="lot.product_id.default_code">
+                                    ^FO80,100^FD(<t t-esc="lot.product_id.default_code" />)^FS
                                 </t>
                                 ^FO80,130
                                 ^TBN, 700, 80
-                                ^FD<t t-esc="move_line.product_id.name" />^FS
+                                ^FD<t t-esc="lot.product_id.display_name" />^FS
                                             
                                 ^FX LINEA
                                 ^FO35,200^GB750,3,2^FS
@@ -47,10 +32,11 @@
                                 ^CF0,30,30
                                 ^FO80,230^FDUNIDADES CAJA^FS
                                 ^CF0,30,30
-                                <t t-if="move_line.product_id.packaging_ids.qty">
-                                    ^FO80,280^FD<t t-esc="move_line.product_id.packaging_ids.qty" />^FS
+                                <!--CANTIDAD POR PAQUETE SE COJE DEL PRODUCTO-->
+                                <t t-if="lot.product_id.packaging_ids">
+                                    ^FO80,280^FD<t t-esc="lot.product_id.packaging_ids.qty" />^FS
                                 </t>
-                                <!--AHORA LA CANTIDAD POR PAQUETE SE COJE DEL CAMPO CREADO-->
+                                <!--CANTIDAD POR PAQUETE SE COJE DEL CAMPO CREADO-->
                                 <!--<t t-if="move_line.cantidad_paquete != 0">
                                 ^FO80,280^FD<t t-esc="move_line.cantidad_paquete" />^FS
                                 </t>-->
@@ -58,8 +44,8 @@
                                 ^CF0,30,30
                                 ^FO420,230^FDUNIDAD DE MEDIDA^FS
                                 ^CF0,30,30
-                                <t t-if="move_line.product_id.uom_id.name">
-                                    ^FO420,280^FD<t t-esc="move_line.product_id.uom_id.name" />^FS
+                                <t t-if="lot.product_id.uom_id.name">
+                                    ^FO420,280^FD<t t-esc="lot.product_id.uom_id.name" />^FS
                                 </t>
                                 ^FX LINEA
                                 ^FO35,335^GB750,3,2^FS
@@ -73,11 +59,11 @@
                                 ^FX CUADRO TEXTO 4
                                 ^CF0,30,30
                                 ^FO420,360^FDMEDIDAS^FS
-                                <t t-set="id" t-value="move_line.product_id.id" />
+                                <t t-set="id" t-value="lot.product_id.id" />
 
-                                <t t-set="color" t-value="picking.print_values('Support color', id)" />
-                                <t t-set="length" t-value="picking.print_values('Length', id)" />
-                                <t t-set="width" t-value="picking.print_values('Width', id)" />
+                                <t t-set="color" t-value="lot.print_values('Support color', id)" />
+                                <t t-set="length" t-value="lot.print_values('Length', id)" />
+                                <t t-set="width" t-value="lot.print_values('Width', id)" />
                                 ^CF0,30,30
                                 ^FO80,410^FD<t t-esc="color" />^FS
                                 ^CF0,30,30
@@ -90,26 +76,24 @@
                                 ^CF0,30,30
                                 ^FO80,480^FDLOTE^FS
                                 ^CF0,30,30
-                                <t t-if="move_line.lot_id">
-                                ^FO80,520^FD<t t-esc="move_line.lot_id.name" />^FS
-                                ^FO400,470^BC,80,N^FD<t t-esc="move_line.lot_id.name" />^FS
-                                </t>
+                                
+                                ^FO80,520^FD<t t-esc="lot.name" />^FS
+                                ^FO400,470^BC,80,N^FD<t t-esc="lot.name" />^FS
+                                
                                 ^FX LINEA
                                 ^FO35,580^GB750,3,2^FS
                                 ^FX CUADRO TEXTO 6 (CODIGO 2)
                                 ^FO280,600^FDCODIGO BARRAS^FS
-                                <t t-if="move_line.product_id.barcode">
+                                <t t-if="lot.product_id.barcode">
                                 ^BY2,2,100
-                                ^FO200,640^BC,90^FD<t t-esc="move_line.product_id.barcode" />^FS
+                                ^FO200,640^BC,90^FD<t t-esc="lot.product_id.barcode" />^FS
                                 </t>
                                 ^FX CUADRO GENERAL
                                 ^FO35,30^GB750,750,2,B,1
                                 ^XZ
-                            </t>
                         </t>
                     </t>
                 </t>
-            </t>
         </template>
     </data>
 </odoo>
